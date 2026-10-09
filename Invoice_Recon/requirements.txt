@@ -1,0 +1,4 @@
+pandas openpyxl pywin32 numpy
+
+numpy openpyxl pywin32
+

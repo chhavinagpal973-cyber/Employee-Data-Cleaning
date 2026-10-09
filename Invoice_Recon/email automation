@@ -1,0 +1,147 @@
+from dataclasses import dataclass
+from html import escape
+from typing import Optional
+
+import win32com.client
+
+
+@dataclass
+class EmailMessage:
+    recipient: str
+    subject: str
+    html_body: str
+    cc: Optional[str] = None
+
+
+class OutlookEmailService:
+    """Creates Outlook email drafts for review."""
+
+    def create_draft(self, email: EmailMessage) -> None:
+        outlook = win32com.client.Dispatch("Outlook.Application")
+        outlook_email = outlook.CreateItem(0)
+
+        outlook_email.To = email.recipient
+
+        if email.cc:
+            outlook_email.CC = email.cc
+
+        outlook_email.Subject = email.subject
+        outlook_email.HTMLBody = email.html_body
+
+        # Save the message in Outlook Drafts.
+        outlook_email.Save()
+
+        # Display the draft for review.
+        outlook_email.Display()
+
+
+def create_client_request_email(
+    recipient: str,
+    client_name: str,
+    company_name: str,
+    start_month: str,
+    end_month: str,
+    upload_link: str,
+) -> EmailMessage:
+    """Creates the Step 1 document-request email."""
+
+    safe_client_name = escape(client_name)
+    safe_company_name = escape(company_name)
+    safe_start_month = escape(start_month)
+    safe_end_month = escape(end_month)
+    safe_upload_link = escape(upload_link, quote=True)
+
+    subject = (
+        f"Monthly Reconciliation Documents Required - "
+        f"{safe_company_name} - {safe_start_month} to {safe_end_month}"
+    )
+
+    html_body = f"""
+    <html>
+        <body style="font-family: Aptos, Arial, sans-serif; font-size: 11pt;">
+
+            <p>Dear {safe_client_name},</p>
+
+            <p>
+                Please upload the required monthly reconciliation supporting
+                documents for <b>{safe_company_name}</b> covering the period
+                from <b>{safe_start_month}</b> to <b>{safe_end_month}</b>
+                at your earliest convenience.
+            </p>
+
+            <p>The following documents are required:</p>
+
+            <ul>
+                <li><b>Working File</b></li>
+                <li>
+                    <b>Supporting Documents</b>, including:
+                    <ul>
+                        <li>Invoice(s)</li>
+                        <li>TNB Bill(s), if applicable</li>
+                        <li>Credit Note(s), if applicable</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>
+                Please upload all documents as a ZIP file using the following
+                link:
+            </p>
+
+            <p>
+                <a href="{safe_upload_link}">{safe_upload_link}</a>
+            </p>
+
+            <p>
+                Once the documents have been uploaded, they will be processed
+                through the reconciliation workflow.
+            </p>
+
+            <p>
+                Should you have any questions or require assistance with the
+                upload process, please feel free to reach out.
+            </p>
+
+            <p>Thank you for your cooperation.</p>
+
+            <p>
+                Thanks &amp; Regards,<br>
+                <b>Chhavi Nagpal</b><br>
+                Ericsson<br>
+                <a href="mailto:chhavi.nagpal@ericsson.com">
+                    chhavi.nagpal@ericsson.com
+                </a>
+            </p>
+
+        </body>
+    </html>
+    """
+
+    return EmailMessage(
+        recipient=recipient,
+        subject=subject,
+        html_body=html_body,
+    )
+
+
+def main() -> None:
+    email = create_client_request_email(
+        recipient="your-test-email@ericsson.com",
+        client_name="Client Team",
+        company_name="Example Company",
+        start_month="September 2026",
+        end_month="September 2026",
+        upload_link="https://your-upload-portal-link.com",
+    )
+
+    email_service = OutlookEmailService()
+    email_service.create_draft(email)
+
+    print("Client document-request draft created successfully.")
+
+
+if __name__ == "__main__":
+    main()
+
+recipient="chhavi.nagpal@ericsson.com"
+

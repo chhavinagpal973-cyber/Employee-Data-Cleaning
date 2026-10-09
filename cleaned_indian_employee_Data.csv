@@ -1,0 +1,25 @@
+emp_id,name,age,salary,experience_years,city,department,performance_rating
+101,Amit Sharma,27,650000.0,4.0,Delhi,IT,4.5
+103,Rajesh Verma,45,1200000.0,,Bangalore,Finance,4.9
+104,Priya Singh,29,720000.0,6.0,Kolkata,IT,4.2
+105,Sunil Kumar,26,500000.0,3.0,Chennai,Sales,4.5
+106,Alok Mehta,52,2000000.0,28.0,Hyderabad,Operations,5.0
+108,Pankaj Mishra,24,1218400.0,2.0,Jaipur,Marketing,3.5
+109,Deepika Reddy,48,3000000.0,30.0,Bangalore,Management,5.0
+110,Ramesh Patil,29,720000.0,6.0,Kolkata,IT,4.2
+111,Meera Nair,34,820000.0,9.0,Kochi,HR,4.3
+112,Sameer Desai,37,1100000.0,15.0,Delhi,Finance,4.8
+113,Swati Joshi,29,650000.0,5.0,Mumbai,IT,4.6
+115,Anjali Saxena,23,380000.0,1.0,Pune,HR,3.9
+116,Manish Khanna,40,1250000.0,18.0,Hyderabad,Operations,4.7
+117,Arjun Pandey,31,750000.0,7.0,Jaipur,IT,4.4
+119,Amit Sharma,27,650000.0,4.0,Delhi,IT,4.5
+120,Rohit Bansal,36,980000.0,12.0,Mumbai,Finance,4.9
+122,Sneha Tiwari,25,550000.0,2.0,Kolkata,Sales,3.6
+123,Gopal Das,51,4800000.0,32.0,Kochi,Management,4.9
+124,Preeti Sharma,33,770000.0,8.0,Pune,HR,4.1
+125,Aditya Saxena,22,1218400.0,0.0,Delhi,IT,3.2
+126,Kiran Kumar,29,650000.0,5.0,Mumbai,IT,4.5
+127,Mohan Reddy,30,820000.0,7.0,Bangalore,HR,4.4
+129,Ravi Chauhan,39,1450000.0,16.0,Hyderabad,Operations,4.8
+130,Varun Jain,35,1125000.0,13.0,Delhi,Finance,4.7
